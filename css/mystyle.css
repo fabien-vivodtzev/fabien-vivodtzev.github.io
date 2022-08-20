@@ -1,0 +1,24 @@
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    /* background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Open Sans, sans-serif;
+  }
+
+  .cropped {
+    width: 150px; /* width of container */
+    height: 600px; /* height of container */
+    overflow: hidden;
+    border: 5px solid black;
+}
+
+.cropped img {
+    margin: -10px 0px 0px -180px;
+}
+
+.texthead {
+  font-size: calc(10% + 1vw + 1vh);
+}
