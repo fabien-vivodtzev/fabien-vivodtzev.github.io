@@ -1,24 +1,305 @@
-.masthead {
-    height: 100vh;
-    min-height: 500px;
-    /* background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080'); */
-    background-size: cover;
-    background-position: center;
+/* --- CONFIGURATION GLOBALE SOMBRE --- */
+body {
+    background-color: #1a1d21 !important; /* Fond anthracite très sombre */
+    color: #e9ecef !important; /* Texte gris clair pour le confort visuel */
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+/* Portrait adaptatif */
+.portrait-banner {
+    max-width: 200px;
+    height: auto;
+    border: 4px solid rgba(255, 255, 255, 0.945);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.portrait-banner:hover {
+    transform: scale(1.02);
+}
+
+.text-primary-light {
+    color: #f4623a; /* Orange signature */
+    letter-spacing: 0.5px;
+}
+
+
+
+
+/* --- HEADER / BANDEAU AVEC IMAGE EN BAS --- */
+header.masthead.banner-mode {
+    position: relative; /* Obligatoire pour le positionnement absolu de l'image */
+    height: auto; 
+    min-height: 40vh; /* Augmenté pour donner de l'espace à l'image */
+    padding: 4rem 0 10rem 0; /* Plus de padding en bas pour ne pas masquer le texte */
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden; /* Empêche l'image de dépasser */
+}
+
+/* Nouveau calque pour l'image de fond */
+header.masthead.banner-mode::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Coller en bas */
+    left: 0;
+    width: 100%;
+    height: 100%; /* Couvre toute la hauteur pour l'effet de dégradé */
+    
+    /* Image de fond (image_1.png) */
+    background-image: url('../img/background-head.png'); /* Vérifiez le chemin et l'extension */
+    background-size: cover; /* Toute la largeur, rogne dynamiquement */
+    background-position: bottom; /* Aligné sur le bas */
     background-repeat: no-repeat;
-    font-family: Open Sans, sans-serif;
-  }
+    
+    /* Mixe la couleur sombre avec l'image pour l'effet d'intégration */
+    mix-blend-mode: soft-light;
+    opacity: 0.8; /* Légère transparence pour le thème sombre */
+    z-index: 0;
+}
 
-  .cropped {
-    width: 150px; /* width of container */
-    height: 600px; /* height of container */
+/* Garantit que le contenu est bien au-dessus de l'image */
+header.masthead.banner-mode .container {
+    z-index: 1;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+.banner-bio {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    color: #ced4da;
+    font-family: 'Merriweather', serif;
+}
+
+.banner-bio a {
+    color: #f4623a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.banner-bio a:hover {
+    text-decoration: underline;
+}
+
+/* --- SECTIONS DE TITRE --- */
+.section-banner-dark {
+    background: #14171a;
+    padding: 2.5rem 0 !important;
+    border-bottom: 1px solid #2d3238;
+}
+
+.section-title-modern {
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.title-underline {
+    height: 4px;
+    width: 60px;
+    background-color: #f4623a;
+    border-radius: 2px;
+}
+
+/* ------------------------------------------------*/
+/* --- ÉLÉMENTS DE RECHERCHE / ARTICLES --- */
+/* ------------------------------------------------*/
+.research-item {
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    background-color: #24272c; /* Cartes en relief sombre */
+    border: 1px solid #2d3238;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.research-item:hover {
+    background-color: #252a30;
+    border-color: #f4623a;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    transform: translateY(-3px);
+}
+
+.publication-thumb {
+    /* border-radius: 8px; */
+    /*box-shadow: 0 4px 10px rgba(0,0,0,0.5);*/
+    max-height: 120px;
+    object-fit: cover;
+}
+
+.entry-title {
+    color: #ffffff;
+    font-size: 1.15rem;
+}
+
+.research-item p.text-muted {
+    color: #adb5bd !important;
+}
+
+.btn-entry {
+    color: #ced4da;
+    border-color: #495057;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.btn-entry:hover {
+    background-color: #f4623a;
+    border-color: #f4623a;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------*/
+/* Style des boutons sociaux sous la navigation */
+/* ------------------------------------------------*/
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    padding: 0px; /* Ajuste la taille de l'icône à l'intérieur */
+}
+
+.social-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Si votre icône est noire, cette ligne la rendra blanche pour le mode sombre */
+    filter: brightness(0) invert(1); 
+    opacity: 0.8;
+}
+
+.social-btn:hover {
+    background-color: rgba(244, 98, 58, 0.2); /* Fond orange transparent au survol */
+    border-color: #f4623a;
+    transform: translateY(-3px);
+}
+
+.social-btn:hover img {
+    filter: brightness(1) invert(1);
+    opacity: 1;
+}
+
+
+
+
+
+
+
+/* --- SÉPARATEUR D'ANNÉES --- */
+.year-divider {
+    display: flex;
+    align-items: center;
+    margin: 3rem 0 2rem 0;
+}
+
+.year-label {
+    font-weight: 700;
+    color: #fff;
+    background-color: #f4623a;
+    padding: 0.3rem 1.2rem;
+    border-radius: 50px;
+    z-index: 1;
+}
+
+.year-line {
+    flex-grow: 1;
+    height: 2px;
+    margin-left: -10px;
+    background: linear-gradient(to right, #f4623a 0%, #121416 100%);
+}
+
+/* --- PORTFOLIO --- */
+.portfolio-item-modern {
+    background-color: #1e2227;
+    border-radius: 12px;
+    border: 1px solid #2d3238;
     overflow: hidden;
-    border: 5px solid black;
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.5);
 }
 
-.cropped img {
-    margin: -10px 0px 0px -180px;
+.portfolio-item-modern:hover {
+    transform: translateY(-5px);
+    border-color: #f4623a;
 }
 
-.texthead {
-  font-size: calc(10% + 1vw + 1vh);
+.portfolio-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: filter 0.3s;
+}
+
+.portfolio-item-modern:hover .portfolio-img {
+    filter: brightness(1);
+}
+
+.portfolio-caption {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.portfolio-caption-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.portfolio-caption-subheading {
+    font-style: italic;
+    font-family: 'Merriweather', serif;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #0f1113 !important;
+    border-top: 1px solid #2d3238;
+}
+
+footer .text-muted {
+    color: #6c757d !important;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    header.masthead.banner-mode {
+        padding: 2rem 0;
+    }
+    .portrait-banner {
+        max-width: 120px;
+        margin-bottom: 1rem;
+    }
+    .section-title-modern {
+        font-size: 1.2rem;
+    }
 }
